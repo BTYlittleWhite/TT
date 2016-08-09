@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			#loading{ background:url(img/2.png) 0 0 no-repeat; width:397px; height:49px;}
+			#loading div{ background:url(img/1.png) 0 0 no-repeat; line-height:49px;height:49px; text-align:right;}	
+		</style>
+	</head>
+	<body>
+		<div id="message"></div>
+		<div id="loading"><div>
+	</body>
+	<script type="text/javascript" src="js/index.js"></script>
+	<script type="text/javascript">
+			
+			var progress_id ="loading";
+			function SetProgress(progress) {
+				if (progress) {
+					$("#" + progress_id +" > div").css("width",String(progress) + "%"); //控制#loading div宽度
+					$("#" + progress_id +"> div").html(String(progress) + "%"); //显示百分比
+				}
+			}
+			var i = 0;
+			function doProgress() {
+				if (i > 100) {
+					$("#message").html("恭喜您，歌曲上传成功！").fadeIn("slow");//加载完毕提示
+					return;
+				}
+				if (i <= 100) {
+					setTimeout("doProgress()",500);
+					SetProgress(i);
+					i++;
+				}
+			}
+			$(document).ready(function() {
+				doProgress();
+			});
+
+</script>
+</html>
+
+
+
+
+
+
+
